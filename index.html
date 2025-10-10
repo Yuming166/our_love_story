@@ -51,11 +51,12 @@
       margin-bottom: 15px;
     }
 
+    /* --- 标签横向排列 --- */
     .tabs {
       display: flex;
       justify-content: center;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 8px;
       margin-bottom: 10px;
     }
 
@@ -63,7 +64,7 @@
       background-color: #ffb6c1;
       color: white;
       border: none;
-      padding: 6px 10px;
+      padding: 8px 16px;
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
@@ -92,11 +93,12 @@
       to {opacity: 1;}
     }
 
-    /* 未来放照片的网格样式 */
+    /* 图片展示区域 */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 10px;
+      margin-top: 15px;
     }
 
     .photo-grid img {
@@ -127,31 +129,22 @@
       </div>
 
       <div id="beijing" class="tab-content active">
-        <div class="photo-grid">
-          <img src="https://placekitten.com/200/200" alt="Beijing photo 1">
-          <img src="https://placekitten.com/201/200" alt="Beijing photo 2">
-        </div>
+        <p>📸 Coming soon...</p>
       </div>
 
       <div id="us" class="tab-content">
-        <div class="photo-grid">
-          <img src="https://placekitten.com/202/200" alt="US photo 1">
-          <img src="https://placekitten.com/203/200" alt="US photo 2">
-        </div>
+        <p>📸 Coming soon...</p>
       </div>
 
       <div id="japan" class="tab-content">
         <div class="photo-grid">
-          <img src="https://placekitten.com/204/200" alt="Japan photo 1">
-          <img src="https://placekitten.com/205/200" alt="Japan photo 2">
+          <img src="images/japan/_MG_8305.jpeg" alt="Japan photo 1">
+          <img src="images/japan/_MG_8283.jpeg" alt="Japan photo 2">
         </div>
       </div>
 
       <div id="taiwan" class="tab-content">
-        <div class="photo-grid">
-          <img src="https://placekitten.com/206/200" alt="Taiwan photo 1">
-          <img src="https://placekitten.com/207/200" alt="Taiwan photo 2">
-        </div>
+        <p>📸 Coming soon...</p>
       </div>
     </div>
 
