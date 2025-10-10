@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Love Story 💖</title>
   <style>
     body {
@@ -51,60 +51,29 @@
       margin-bottom: 15px;
     }
 
-    /* --- 标签横向排列 --- */
+    /* --- 标签纵向排列 --- */
     .tabs {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
     }
 
     .tab {
       background-color: #ffb6c1;
       color: white;
       border: none;
-      padding: 8px 16px;
+      padding: 12px;
       border-radius: 10px;
       cursor: pointer;
+      font-size: 1em;
+      width: 100%;
       transition: 0.3s;
-      font-size: 0.9em;
+      text-align: center;
     }
 
     .tab:hover {
-      background-color: #ff8fa3;
-    }
-
-    .tab.active {
       background-color: #ff4d6d;
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    /* 图片展示区域 */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .photo-grid img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
     }
 
     footer {
@@ -122,29 +91,11 @@
     <div class="box">
       <h2>Photos 📷</h2>
       <div class="tabs">
-        <button class="tab active" onclick="openTab(event, 'beijing')">In Beijing</button>
-        <button class="tab" onclick="openTab(event, 'us')">In U.S.</button>
-        <button class="tab" onclick="openTab(event, 'japan')">In Japan</button>
-        <button class="tab" onclick="openTab(event, 'taiwan')">In Taiwan</button>
-      </div>
-
-      <div id="beijing" class="tab-content active">
-        <p>📸 Coming soon...</p>
-      </div>
-
-      <div id="us" class="tab-content">
-        <p>📸 Coming soon...</p>
-      </div>
-
-      <div id="japan" class="tab-content">
-        <div class="photo-grid">
-          <img src="images/japan/_MG_8305.jpeg" alt="Japan photo 1">
-          <img src="images/japan/_MG_8283.jpeg" alt="Japan photo 2">
-        </div>
-      </div>
-
-      <div id="taiwan" class="tab-content">
-        <p>📸 Coming soon...</p>
+        <!-- 每个按钮链接到新的全屏页面 -->
+        <button class="tab" onclick="location.href='beijing.html'">In Beijing</button>
+        <button class="tab" onclick="location.href='us.html'">In U.S.</button>
+        <button class="tab" onclick="location.href='japan.html'">In Japan</button>
+        <button class="tab" onclick="location.href='taiwan.html'">In Taiwan</button>
       </div>
     </div>
 
@@ -165,16 +116,7 @@
   <footer>
     © 2025 Yuming Gao. All rights reserved.
   </footer>
-
-  <script>
-    function openTab(evt, tabName) {
-      const contents = document.querySelectorAll('.tab-content');
-      const tabs = document.querySelectorAll('.tab');
-      contents.forEach(c => c.classList.remove('active'));
-      tabs.forEach(t => t.classList.remove('active'));
-      document.getElementById(tabName).classList.add('active');
-      evt.currentTarget.classList.add('active');
-    }
-  </script>
+</body>
+</html>
 </body>
 </html>
