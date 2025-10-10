@@ -1,1 +1,24 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Photos</title>
+  <style>
+    body { font-family: Arial; margin:0; padding:0; text-align:center; background:#fff5ee; }
+    h1 { color: #ff4d6d; margin:20px 0; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:10px; padding:20px; }
+    .photo-grid img { width:100%; border-radius:10px; object-fit:cover; }
+    .back-btn { margin:20px; padding:10px 20px; background:#ffb6c1; color:white; border:none; border-radius:10px; cursor:pointer; }
+    .back-btn:hover { background:#ff4d6d; }
+  </style>
+</head>
+<body>
+  <h1>In Japan 📷</h1>
+  <div class="photo-grid">
+    <img src="images/japan/_MG_8305.jpeg" alt="Japan photo 1">
+    <img src="images/japan/_MG_8283.jpeg" alt="Japan photo 2">
+  </div>
+  <button class="back-btn" onclick="location.href='index.html'">← Back</button>
+</body>
+</html>
