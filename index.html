@@ -1,54 +1,110 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>💖 玉米宝宝 & Daisy 宝宝 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Love Story 💖</title>
   <style>
     body {
-      background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-      font-family: "Comic Sans MS", cursive;
-      text-align: center;
-      color: #333;
+      font-family: "Comic Sans MS", cursive, sans-serif;
       margin: 0;
       padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      text-align: center;
+      color: #444;
     }
     h1 {
-      font-size: 2.5em;
-      margin-top: 60px;
+      font-size: 2.8em;
+      margin-top: 50px;
+      color: #d63384;
     }
-    .heart {
-      font-size: 3em;
-      color: red;
-      animation: beat 1s infinite;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 50px auto;
+      max-width: 1000px;
     }
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
+    .column {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 280px;
+      transition: transform 0.3s ease;
     }
-    .timeline {
-      margin: 40px auto;
-      max-width: 600px;
-      text-align: left;
+    .column:hover {
+      transform: translateY(-5px);
     }
-    .event {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
+    h2 {
+      font-size: 1.6em;
+      color: #ff69b4;
+      margin-bottom: 15px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #ffeaf4;
+      margin: 8px 0;
+      padding: 10px;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s ease;
+    }
+    li:hover {
+      background: #ffd6ec;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #d63384;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <h1>💑 玉米宝宝 & Daisy 宝宝 💑</h1>
-  <p>今天是我们在一起的第 <b>100</b> 天～</p>
-  <div class="heart">❤️</div>
-  <div class="timeline">
-    <div class="event"><b>Day 1：</b> 我们正式在一起啦 🥰</div>
-    <div class="event"><b>Day 37：</b> 一起去黄石公园爬 Mount Washburn ⛰️</div>
-    <div class="event"><b>Day 60：</b> 第一次一起看落日 🌅</div>
-    <div class="event"><b>Day 100：</b> 记录这特别的一天 💖</div>
+  <h1>💖 Our Love Story 💖</h1>
+
+  <div class="container">
+    <!-- Photos Section -->
+    <div class="column">
+      <h2>📷 Photos</h2>
+      <ul>
+        <li><a href="#">In Beijing</a></li>
+        <li><a href="#">In U.S.</a></li>
+        <li><a href="#">In Japan</a></li>
+        <li><a href="#">In Taiwan</a></li>
+      </ul>
+    </div>
+
+    <!-- Love Letters Section -->
+    <div class="column">
+      <h2>💌 Love Letters</h2>
+      <ul>
+        <li><a href="#">两个月纪念😘！</a></li>
+        <li><a href="#">一百天达成🥰！！！</a></li>
+      </ul>
+    </div>
+
+    <!-- Sunrise and Sunset Section -->
+    <div class="column">
+      <h2>🌄 Sunrise & Sunset 🌆</h2>
+      <ul>
+        <li><a href="#">With U</a></li>
+      </ul>
+    </div>
   </div>
-  <p>Forever and always 🌈</p>
+
+  <footer>Made with ❤️ by Yumi & Daisy</footer>
 </body>
 </html>
