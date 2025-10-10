@@ -6,105 +6,97 @@
   <title>Our Love Story 💖</title>
   <style>
     body {
-      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4e1, #fff5ee);
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
       text-align: center;
-      color: #444;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
     h1 {
-      font-size: 2.8em;
-      margin-top: 50px;
-      color: #d63384;
+      color: #ff4d6d;
+      margin-top: 40px;
+      font-size: 2.5em;
     }
+
     .container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 25px;
-      margin: 50px auto;
-      max-width: 1000px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+      padding: 0 20px;
+      flex: 1;
     }
-    .column {
-      background: #fff;
+
+    .box {
+      background: white;
       border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
       width: 280px;
-      transition: transform 0.3s ease;
+      transition: 0.3s;
     }
-    .column:hover {
+
+    .box:hover {
       transform: translateY(-5px);
     }
+
     h2 {
-      font-size: 1.6em;
       color: #ff69b4;
-      margin-bottom: 15px;
     }
+
     ul {
-      list-style-type: none;
+      list-style: none;
       padding: 0;
     }
+
     li {
-      background: #ffeaf4;
       margin: 8px 0;
-      padding: 10px;
-      border-radius: 12px;
-      transition: background 0.2s ease;
-    }
-    li:hover {
-      background: #ffd6ec;
-    }
-    a {
-      text-decoration: none;
       color: #333;
-      font-weight: bold;
     }
-    a:hover {
-      color: #d63384;
-    }
+
     footer {
       margin-top: 40px;
-      padding: 15px;
-      font-size: 0.9em;
+      padding: 20px;
       color: #777;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <h1>💖 Our Love Story 💖</h1>
+  <h1>Our Love Story 💖</h1>
 
   <div class="container">
-    <!-- Photos Section -->
-    <div class="column">
-      <h2>📷 Photos</h2>
+    <div class="box">
+      <h2>Photos 📷</h2>
       <ul>
-        <li><a href="#">In Beijing</a></li>
-        <li><a href="#">In U.S.</a></li>
-        <li><a href="#">In Japan</a></li>
-        <li><a href="#">In Taiwan</a></li>
+        <li>In Beijing</li>
+        <li>In U.S.</li>
+        <li>In Japan</li>
+        <li>In Taiwan</li>
       </ul>
     </div>
 
-    <!-- Love Letters Section -->
-    <div class="column">
-      <h2>💌 Love Letters</h2>
+    <div class="box">
+      <h2>Love Letters 💌</h2>
       <ul>
-        <li><a href="#">两个月纪念😘！</a></li>
-        <li><a href="#">一百天达成🥰！！！</a></li>
+        <li>两个月纪念 😘！</li>
+        <li>一百天达成 🥰！！！</li>
       </ul>
     </div>
 
-    <!-- Sunrise and Sunset Section -->
-    <div class="column">
-      <h2>🌄 Sunrise & Sunset 🌆</h2>
-      <ul>
-        <li><a href="#">With U</a></li>
-      </ul>
+    <div class="box">
+      <h2>Sunrise 🌄 and Sunset 🌆 with U</h2>
     </div>
   </div>
 
-  <footer>Made with ❤️ by Yumi & Daisy</footer>
+  <footer>
+    © 2025 Yuming Gao. All rights reserved.
+  </footer>
 </body>
 </html>
