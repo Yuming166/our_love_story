@@ -162,6 +162,22 @@
       </div>
       <p id="surprise-text" class="fade-text"></p>
     </div>
+
+    <div class="box">
+      <h2>🕒 Time & Weather ☀️</h2>
+      <div id="time-weather" class="tab-grid">
+        <div class="tab">
+          <strong>Beijing 🇨🇳</strong><br>
+          <span id="beijing-time">--:--</span><br>
+          <span id="beijing-weather">Loading...</span>
+        </div>
+        <div class="tab">
+          <strong>California 🇺🇸</strong><br>
+          <span id="pacific-time">--:--</span><br>
+          <span id="pacific-weather">Loading...</span>
+        </div>
+      </div>
+    </div>
   </div>
     <script>
       const surprises = [
@@ -190,6 +206,58 @@
         text.classList.add("fade-text");
       }
     </script>
+
+    
+<script>
+  // 更新时间
+  function updateTimes() {
+    const beijing = new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai", hour: '2-digit', minute: '2-digit', hour12: false });
+    const pacific = new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour: '2-digit', minute: '2-digit', hour12: false });
+    document.getElementById("beijing-time").textContent = beijing;
+    document.getElementById("pacific-time").textContent = pacific;
+  }
+  setInterval(updateTimes, 1000);
+  updateTimes();
+
+  // 获取天气（使用 Open-Meteo 免费 API）
+  async function updateWeather() {
+    const urls = {
+      beijing: "https://api.open-meteo.com/v1/forecast?latitude=39.9042&longitude=116.4074&current_weather=true",
+      california: "https://api.open-meteo.com/v1/forecast?latitude=34.05&longitude=-118.25&current_weather=true"
+    };
+
+    try {
+      const [bjRes, caRes] = await Promise.all([
+        fetch(urls.beijing).then(r => r.json()),
+        fetch(urls.california).then(r => r.json())
+      ]);
+
+      const bjTemp = bjRes.current_weather.temperature;
+      const bjCode = bjRes.current_weather.weathercode;
+      const caTemp = caRes.current_weather.temperature;
+      const caCode = caRes.current_weather.weathercode;
+
+      document.getElementById("beijing-weather").textContent = `${bjTemp}°C ${getWeatherIcon(bjCode)}`;
+      document.getElementById("pacific-weather").textContent = `${caTemp}°C ${getWeatherIcon(caCode)}`;
+    } catch (e) {
+      document.getElementById("beijing-weather").textContent = "Weather unavailable";
+      document.getElementById("pacific-weather").textContent = "Weather unavailable";
+    }
+  }
+
+  function getWeatherIcon(code) {
+    if (code === 0) return "☀️";
+    if (code <= 3) return "🌤️";
+    if (code <= 45) return "🌫️";
+    if (code <= 61) return "🌧️";
+    if (code <= 71) return "❄️";
+    if (code <= 95) return "🌩️";
+    return "☁️";
+  }
+
+  updateWeather();
+  setInterval(updateWeather, 30 * 60 * 1000); // 每30分钟更新一次
+</script>
 
     
   <footer>
