@@ -82,6 +82,32 @@
       color: #777;
       font-size: 0.9em;
     }
+    .tab-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+      align-items: center;
+    }
+
+    .tab {
+      background: #ffe4e1;
+      color: #ff4d6d;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: bold;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .tab:hover {
+      transform: scale(1.05);
+      background: #ffb6c1;
+    }
   </style>
 </head>
 <body>
@@ -98,13 +124,17 @@
         <button class="tab" onclick="location.href='taiwan.html'">In Taiwan</button>
       </div>
     </div>
-
+    
     <div class="box">
       <h2>Love Letters 💌</h2>
-      <ul>
-        <li>两个月纪念 😘！</li>
-        <li>一百天达成 🥰！！！</li>
-      </ul>
+      <div class="tab-grid">
+        <div class="tab" onclick="window.open('https://yuming166.github.io/our_love_story/pdfs/2months.pdf', '_blank')">
+          两个月纪念 😘！
+        </div>
+        <div class="tab" onclick="window.open('https://yuming166.github.io/our_love_story/pdfs/100days.pdf', '_blank')">
+          一百天达成 🥰！！！
+        </div>
+      </div>
     </div>
 
     <div class="box">
