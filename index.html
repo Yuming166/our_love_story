@@ -251,7 +251,7 @@
     };
 
     try {
-      const [bjRes, caRes] = await Promise.all([
+      const [bjRes, gzRes, caRes] = await Promise.all([
         fetch(urls.beijing).then(r => r.json()),
         fetch(urls.guangzhou).then(r => r.json()),
         fetch(urls.california).then(r => r.json())
