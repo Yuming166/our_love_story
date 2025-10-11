@@ -125,13 +125,88 @@
         <a class="tab" href="loveletters/100days.pdf" target="_blank">一百天达成🥰！！！</a>
       </div>
     </div>
-
+    
     <div class="box">
       <h2>Sunrise 🌄 and Sunset 🌆 with U</h2>
       <p>Coming soon… 🌅</p>
     </div>
   </div>
+    <div class="surprise-container">
+      <h2>💫 小惊喜时间 💫</h2>
+      <button class="surprise-btn" onclick="showSurprise()">点我一下 💌</button>
+      <p id="surprise-text" class="fade-text"></p>
+    </div>
 
+    <script>
+      const surprises = [
+        "今天想你 100% ❤️",
+        "记得早点休息哦～ 🌙",
+        "想抱抱🥺",
+        "你笑起来真好看 ☀️",
+        "我们越来越近啦 💞",
+        "遇见你真好 💐",
+        "摸摸头，不要焦虑～ 🤍",
+        "小笨蛋，我爱你 😘"
+      ];
+
+      function showSurprise() {
+        const text = document.getElementById("surprise-text");
+        const randomIndex = Math.floor(Math.random() * surprises.length);
+        text.textContent = surprises[randomIndex];
+    
+    // 触发淡入动画
+        text.classList.remove("fade-text");
+        void text.offsetWidth; // 重新触发动画
+        text.classList.add("fade-text");
+      }
+    </script>
+
+    <style>
+      .surprise-container {
+        margin-top: 40px;
+        background: #fff5f7;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+        width: 300px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .surprise-btn {
+        background: #ffb6c1;
+        border: none;
+        color: white;
+        font-size: 1.1em;
+        padding: 12px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .surprise-btn:hover {
+        background: #ff4d6d;
+        transform: scale(1.05);
+      }
+
+      #surprise-text {
+        margin-top: 15px;
+        font-size: 1.2em;
+        color: #ff4d6d;
+        font-weight: bold;
+        min-height: 1.5em;
+      }
+
+      .fade-text {
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
   <footer>
     © 2025 Bob G.& Daisy W. All rights reserved.
   </footer>
