@@ -169,15 +169,19 @@
     </div>
 
     <div class="box">
-      <h2>🕒 Time & Weather ☀️</h2>
+      <h2>Time & Weather</h2>
       <div id="time-weather" class="tab-grid">
         <div class="tab">
-          <strong>Beijing 🇨🇳</strong><br>
-          <span id="beijing-time">--:--</span><br>
-          <span id="beijing-weather">Loading...</span>
+          <div style="display: flex; justify-content: center; align-items: baseline; gap: 6px;">
+            <strong>Beijing (GMT+8)</strong>
+            <span id="beijing-time">--:--</span>
+          </div>
+      <div>
+        <span id="beijing-weather">Loading...</span>
         </div>
+      </div>
         <div class="tab">
-          <strong>California 🇺🇸</strong><br>
+          <strong>Berkeley (GMT-7)</strong><br>
           <span id="pacific-time">--:--</span><br>
           <span id="pacific-weather">Loading...</span>
         </div>
@@ -228,7 +232,7 @@
   async function updateWeather() {
     const urls = {
       beijing: "https://api.open-meteo.com/v1/forecast?latitude=39.9042&longitude=116.4074&current_weather=true",
-      california: "https://api.open-meteo.com/v1/forecast?latitude=34.05&longitude=-118.25&current_weather=true"
+      california: "https://api.open-meteo.com/v1/forecast?latitude=37.87&longitude=-122.26&current_weather=true"
     };
 
     try {
@@ -251,13 +255,13 @@
   }
 
   function getWeatherIcon(code) {
-    if (code === 0) return "☀️";
-    if (code <= 3) return "🌤️";
-    if (code <= 45) return "🌫️";
-    if (code <= 61) return "🌧️";
-    if (code <= 71) return "❄️";
-    if (code <= 95) return "🌩️";
-    return "☁️";
+    if (code === 0) return "Sunny☀️";
+    if (code <= 3) return "Partly Sunny🌤️";
+    if (code <= 45) return "Mostly Clody🌫️";
+    if (code <= 61) return "Rainy🌧️";
+    if (code <= 71) return "Snowy❄️";
+    if (code <= 95) return "Lightning🌩️";
+    return "Clody☁️";
   }
 
   updateWeather();
