@@ -88,6 +88,23 @@
 </head>
 <body>
   <h1>Our Love Story 💖</h1>
+  <p id="days-counter" style="font-size: 1.3em; color: #ff4d6d; margin-top: 10px;">
+  Loading days...
+  </p>
+
+  <script>
+  // 你们在一起的日期（修改这里！）
+    const startDate = new Date("2025-07-04");
+
+    function updateDays() {
+      const today = new Date();
+      const diffTime = today - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById("days-counter").innerText = `🌽🌼在一起已经 ${diffDays} 天！`;
+    }
+
+    updateDays();
+  </script>
 
   <div class="container">
     
