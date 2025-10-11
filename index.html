@@ -31,6 +31,9 @@
       margin-top: 50px;
       padding: 0 20px;
       flex: 1;
+      max-width: 960px; /* ✅ 限制一行最多三个框（3×300px + 间距） */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .box {
@@ -134,7 +137,9 @@
   
     <div class="box">
       <h2>💫 小惊喜时间 💫</h2>
-      <button class="tab" onclick="showSurprise()">点我一下 💌</button>
+      <div class="tab-grid">
+        <a class="tab" onclick="showSurprise()">点我一下 💌</a>
+      </div>
       <p id="surprise-text" class="fade-text"></p>
     </div>
   </div>
