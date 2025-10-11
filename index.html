@@ -38,8 +38,7 @@
       border-radius: 20px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       padding: 25px;
-      width: 100%;  /* 👈 改成占满整行 */
-      max-width: 600px;
+      width: 280px;
       transition: 0.3s;
     }
 
@@ -61,16 +60,18 @@
     }
 
     .tab {
+      display: block;
       background-color: #ffb6c1;
       color: white;
       border: none;
-      padding: 12px;
+      padding: 14px 0;
       border-radius: 10px;
       cursor: pointer;
-      font-size: 1em;
-      width: 100%;
+      font-size: 1.05em;
+      font-weight: 500;
+      width: 100%; /* 占满整行 */
+      text-align: center; /* 居中 */
       transition: 0.3s;
-      text-align: center;
     }
 
     .tab:hover {
