@@ -117,40 +117,51 @@
 
    /* 心心样式 */
     .heart {
-      position: fixed;
-      top: -50px;
-      width: 20px;
-      height: 20px;
-      background-color: #ff4d6d;
-      transform: rotate(315deg) scale(var(--scale, 1)) translateX(var(--x,0px));
-      z-index: 9999;
-      pointer-events: none;
-      animation: fall var(--fall-time, 4s) linear forwards, sway 1s ease-in-out infinite alternate;
-    }
+  position: fixed;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  transform: rotate(315deg) scale(var(--scale,1)) translateX(0);
+  z-index: 9999;
+  pointer-events: none;
+  animation: fall var(--fall-time, 4s) linear forwards, sway var(--sway-time, 2s) ease-in-out infinite;
+  will-change: transform;
+}
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: #ff4d6d;
-      border-radius: 50%;
-    }
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: 10px; top: 0; }
+.heart::before {
+  top: -10px;
+  left: 0;
+}
 
-    @keyframes fall {
-      0% { top: -50px; opacity: 1; }
-      100% { top: 100vh; opacity: 0; }
-    }
+.heart::after {
+  left: 10px;
+  top: 0;
+}
 
-    @keyframes sway {
-      0% { --x: 0px; }
-      50% { --x: var(--sway-distance, 10px); }
-      100% { --x: 0px; }
-    }
+@keyframes fall {
+  0% { transform: translateY(0) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity:1; }
+  100% { transform: translateY(100vh) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity:0; }
+}
+
+/* 丝滑左右摆动 */
+@keyframes sway {
+  0% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
+  25% { transform: translateY(var(--y,0)) translateX(var(--sway-distance,10px)) rotate(45deg) scale(var(--scale,1)); }
+  50% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
+  75% { transform: translateY(var(--y,0)) translateX(calc(-1 * var(--sway-distance,10px))) rotate(45deg) scale(var(--scale,1)); }
+  100% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
+}
   </style>
 </head>
 <body>
@@ -289,28 +300,20 @@
         createHearts(52); // 每次点击生成5个心心
       }
       function createHearts(count) {
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-
-        // 随机水平位置
-        heart.style.left = `${Math.random() * 90 + 5}%`;
-
-        // 随机大小
-        const scale = Math.random() * 0.6 + 0.6;
-        heart.style.setProperty('--scale', scale);
-
-        // 随机左右摇摆幅度
-        heart.style.setProperty('--sway-distance', `${Math.random() * 10 + 5}px`);
-
-        // 随机下落时间
-        heart.style.setProperty('--fall-time', `${4 + Math.random() * 2}s`);
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 6000);
-      }
-    }
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = `${Math.random()*90 + 5}%`;
+    const scale = Math.random()*0.6 + 0.6;
+    heart.style.setProperty('--scale', scale);
+    const swayDist = Math.random()*8 + 5; // 5~13px
+    const swayTime = Math.random()*1 + 1.5; // 1.5~2.5秒
+    heart.style.setProperty('--sway-distance', `${swayDist}px`);
+    heart.style.setProperty('--sway-time', `${swayTime}s`);
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+}
     </script>
 
     
