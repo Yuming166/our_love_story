@@ -263,6 +263,10 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
       <strong>Daisy宝宝破壳日🐣</strong><br>
       <span id="daisy-countdown">Loading...</span>
     </div>
+    <div class="tab">
+      <strong>2026新年🗓️</strong><br>
+      <span id="newyear-countdown">Loading...</span>
+    </div>
   </div>
 </div>
 
@@ -418,6 +422,19 @@ function updateCountdown() {
 
   document.getElementById("corn-countdown").textContent = getTimeLeft(cornHatch);
   document.getElementById("daisy-countdown").textContent = getTimeLeft(daisyHatch);
+}
+const nextYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+  const diffNewYear = nextYear - now;
+  if (diffNewYear <= 0) {
+    document.getElementById("newyear-countdown").textContent = "Happy New Year! 🎆";
+  } else {
+    const daysNY = Math.floor(diffNewYear / (1000*60*60*24));
+    const hoursNY = Math.floor((diffNewYear / (1000*60*60)) % 24);
+    const minutesNY = Math.floor((diffNewYear / (1000*60)) % 60);
+    const secondsNY = Math.floor((diffNewYear / 1000) % 60);
+    document.getElementById("newyear-countdown").textContent =
+      `${daysNY}d ${hoursNY}h ${minutesNY}m ${secondsNY}s`;
+  }
 }
 
 updateCountdown();
