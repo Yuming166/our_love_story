@@ -393,29 +393,35 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
   setInterval(updateWeather, 30 * 60 * 1000); // 每30分钟更新一次
 </script>
 <script>
-  // 破壳日期
-  const cornHatch = new Date("2025-12-02T17:08:00");
-  const daisyHatch = new Date("2025-12-21T17:21:00");
+const cornHatch = { year: 2025, month: 11, day: 2, hour: 17, minute: 8 };  // 月份 0 开始，12月=11
+const daisyHatch = { year: 2025, month: 11, day: 21, hour: 17, minute: 21 };
 
-  function updateCountdown() {
-    const now = new Date();
+function updateCountdown() {
+  const now = new Date();
 
-    function getTimeLeft(target) {
-      const diff = target - now;
-      if(diff <= 0) return "Hatched! 🐣";
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff / (1000*60*60)) % 24);
-      const minutes = Math.floor((diff / (1000*60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+  function getTimeLeft(target) {
+    // 构造本地时间的目标日期
+    const targetDate = new Date(
+      target.year, target.month, target.day, target.hour, target.minute, 0
+    );
 
-    document.getElementById("corn-countdown").textContent = getTimeLeft(cornHatch);
-    document.getElementById("daisy-countdown").textContent = getTimeLeft(daisyHatch);
+    const diff = targetDate - now;
+    if (diff <= 0) return "Hatched! 🐣";
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  document.getElementById("corn-countdown").textContent = getTimeLeft(cornHatch);
+  document.getElementById("daisy-countdown").textContent = getTimeLeft(daisyHatch);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
     
   <footer>
