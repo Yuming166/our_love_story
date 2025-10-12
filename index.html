@@ -147,14 +147,16 @@
   top: 0;
 }
 
+/* 竖直下落 */
 @keyframes fall {
-  0% { transform: translateY(0) rotate(45deg) scale(var(--scale,1)); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(45deg) scale(var(--scale,1)); opacity: 0; }
+  0% { transform: translateY(0) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity: 1; }
+  100% { transform: translateY(100vh) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity: 0; }
 }
 
+/* 左右微摇，不覆盖 rotate/scale */
 @keyframes sway {
-  0% { transform: translateX(0) rotate(45deg) scale(var(--scale,1)); }
-  100% { transform: translateX(10px) rotate(45deg) scale(var(--scale,1)); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(10px); }
 }
   </style>
 </head>
@@ -305,10 +307,14 @@
     const scale = Math.random() * 0.6 + 0.6; // 0.6~1.2倍
     heart.style.setProperty('--scale', scale);
 
+    // 随机摇摆幅度
+    const swayDistance = Math.random() * 10 + 5; // 5~15px
+    heart.style.animation = `fall ${4 + Math.random()*2}s linear forwards, sway 1s ease-in-out infinite alternate`;
+    heart.style.setProperty('--sway-distance', `${swayDistance}px`);
+
     document.body.appendChild(heart);
 
-    // 自动移除
-    setTimeout(() => heart.remove(), 4000);
+    setTimeout(() => heart.remove(), 6000);
   }
 }
     </script>
