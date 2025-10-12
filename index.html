@@ -115,43 +115,47 @@
       line-height: 1.4;
     }
 
-    /* 心心样式 */
-.heart {
+    .heart {
   position: fixed;
-  width: 25px;
-  height: 25px;
-  pointer-events: none;
+  top: -50px;
+  width: 20px;
+  height: 20px;
   background-color: #ff4d6d;
   transform: rotate(45deg);
-  top: -50px;
-  left: 50%;
   z-index: 9999;
-  animation: fall 4s linear forwards;
+  pointer-events: none;
+  animation: fall 4s linear forwards, sway 1s ease-in-out infinite alternate;
 }
 
 .heart::before,
 .heart::after {
   content: '';
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background-color: #ff4d6d;
   border-radius: 50%;
 }
 
 .heart::before {
-  top: -12.5px;
+  top: -10px;
   left: 0;
 }
 
 .heart::after {
-  left: 12.5px;
+  left: 10px;
   top: 0;
 }
 
 @keyframes fall {
-  0% { transform: translateX(0) rotate(45deg); opacity: 1; }
-  100% { transform: translateX(var(--x)) translateY(100vh) rotate(45deg); opacity: 0; }
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+}
+
+/* 轻微左右摇摆 */
+@keyframes sway {
+  0% { transform: translateX(0) rotate(45deg); }
+  100% { transform: translateX(10px) rotate(45deg); }
 }
   </style>
 </head>
@@ -288,19 +292,19 @@
         text.classList.remove("fade-text");
         void text.offsetWidth; // 重新触发动画
         text.classList.add("fade-text");
-        createHearts(5); // 每次点击生成5个心心
+        createHearts(30); // 每次点击生成5个心心
       }
       function createHearts(count) {
     for (let i = 0; i < count; i++) {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      const x = (Math.random() - 0.5) * 200; // 左右浮动
-      heart.style.setProperty('--x', `${x}px`);
-      const scale = Math.random() * 0.5 + 0.8; // 随机大小
-      heart.style.transform += ` scale(${scale})`;
+      heart.style.left = `${Math.random() * 90 + 5}%`; // 随机水平位置
+      const scale = Math.random() * 0.6 + 0.6; // 随机大小 0.6~1.2
+      heart.style.transform = `scale(${scale})`;
       document.body.appendChild(heart);
 
-      setTimeout(() => heart.remove(), 4000); // 4秒后移除
+      // 自动移除
+      setTimeout(() => heart.remove(), 4000);
     }
   }
     </script>
