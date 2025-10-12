@@ -114,6 +114,45 @@
       font-size: 1em;
       line-height: 1.4;
     }
+
+    /* 心心样式 */
+.heart {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+  background-color: #ff4d6d;
+  transform: rotate(45deg);
+  top: -50px;
+  left: 50%;
+  z-index: 9999;
+  animation: fall 4s linear forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -12.5px;
+  left: 0;
+}
+
+.heart::after {
+  left: 12.5px;
+  top: 0;
+}
+
+@keyframes fall {
+  0% { transform: translateX(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateX(var(--x)) translateY(100vh) rotate(45deg); opacity: 0; }
+}
   </style>
 </head>
 <body>
@@ -249,7 +288,21 @@
         text.classList.remove("fade-text");
         void text.offsetWidth; // 重新触发动画
         text.classList.add("fade-text");
+        createHearts(5); // 每次点击生成5个心心
       }
+      function createHearts(count) {
+    for (let i = 0; i < count; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      const x = (Math.random() - 0.5) * 200; // 左右浮动
+      heart.style.setProperty('--x', `${x}px`);
+      const scale = Math.random() * 0.5 + 0.8; // 随机大小
+      heart.style.transform += ` scale(${scale})`;
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000); // 4秒后移除
+    }
+  }
     </script>
 
     
