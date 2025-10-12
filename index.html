@@ -156,14 +156,19 @@
 
   <script>
   // 你们在一起的日期（修改这里！）
-    const startDate = new Date("2025-07-04");
-
+    //const startDate = new Date("2025-07-04");
     function updateDays() {
-      const today = new Date();
-      const diffTime = today - startDate;
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      document.getElementById("days-counter").innerText = `🌽🌼在一起已经 ${diffDays} 天！`;
-    }
+  // 获取当前北京时间
+  const now = new Date();
+  const nowBeijing = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+
+  // 起始日期
+  const startDate = new Date("2025-07-04T00:00:00+08:00"); // 明确北京时间
+  const diffTime = nowBeijing - startDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  document.getElementById("days-counter").innerText = `🌽🌼在一起已经 ${diffDays} 天！`;
+}
 
     updateDays();
   </script>
