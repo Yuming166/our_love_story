@@ -296,7 +296,7 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
         text.classList.remove("fade-text");
         void text.offsetWidth; // 重新触发动画
         text.classList.add("fade-text");
-        createHearts(52); // 每次点击生成5个心心
+        createHearts(52); // 每次点击生成52个心心
       }
       function createHearts(count) {
   for (let i = 0; i < count; i++) {
@@ -311,13 +311,13 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
     heart.style.transform = `rotate(45deg) scale(${scale})`;
 
     const swayDist = Math.random()*8 + 5; // 摆动幅度
-    const fallTime = Math.random()*2 + 4; // 下落时间 4~6s
-    const delay = Math.random() * 1; // 0~1秒延迟开始
+    const fallTime = Math.random()*3 + 4; // 下落时间 4~6s
+    
     let start = null;
 
     function animateHeart(timestamp) {
-      if(!heart.start) heart.start = timestamp + delay*1000; // 延迟
-      //if(!start) start = timestamp;
+      
+      if(!start) start = timestamp;
       const elapsed = (timestamp - start)/1000;
       const progress = elapsed / fallTime;
       if(progress >= 1){
