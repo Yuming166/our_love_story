@@ -312,11 +312,12 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
 
     const swayDist = Math.random()*8 + 5; // 摆动幅度
     const fallTime = Math.random()*2 + 4; // 下落时间 4~6s
-
+    const delay = Math.random() * 1; // 0~1秒延迟开始
     let start = null;
 
     function animateHeart(timestamp) {
-      if(!start) start = timestamp;
+      if(!heart.start) heart.start = timestamp + delay*1000; // 延迟
+      //if(!start) start = timestamp;
       const elapsed = (timestamp - start)/1000;
       const progress = elapsed / fallTime;
       if(progress >= 1){
