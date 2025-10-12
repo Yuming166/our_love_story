@@ -115,13 +115,13 @@
       line-height: 1.4;
     }
 
-    .heart {
+   .heart {
   position: fixed;
   top: -50px;
   width: 20px;
   height: 20px;
   background-color: #ff4d6d;
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(var(--scale, 1));
   z-index: 9999;
   pointer-events: none;
   animation: fall 4s linear forwards, sway 1s ease-in-out infinite alternate;
@@ -148,14 +148,13 @@
 }
 
 @keyframes fall {
-  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+  0% { transform: translateY(0) rotate(45deg) scale(var(--scale,1)); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(45deg) scale(var(--scale,1)); opacity: 0; }
 }
 
-/* 轻微左右摇摆 */
 @keyframes sway {
-  0% { transform: translateX(0) rotate(45deg); }
-  100% { transform: translateX(10px) rotate(45deg); }
+  0% { transform: translateX(0) rotate(45deg) scale(var(--scale,1)); }
+  100% { transform: translateX(10px) rotate(45deg) scale(var(--scale,1)); }
 }
   </style>
 </head>
@@ -295,18 +294,23 @@
         createHearts(30); // 每次点击生成5个心心
       }
       function createHearts(count) {
-    for (let i = 0; i < count; i++) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = `${Math.random() * 90 + 5}%`; // 随机水平位置
-      const scale = Math.random() * 0.6 + 0.6; // 随机大小 0.6~1.2
-      heart.style.transform = `scale(${scale})`;
-      document.body.appendChild(heart);
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
 
-      // 自动移除
-      setTimeout(() => heart.remove(), 4000);
-    }
+    // 随机水平位置
+    heart.style.left = `${Math.random() * 90 + 5}%`;
+
+    // 随机大小
+    const scale = Math.random() * 0.6 + 0.6; // 0.6~1.2倍
+    heart.style.setProperty('--scale', scale);
+
+    document.body.appendChild(heart);
+
+    // 自动移除
+    setTimeout(() => heart.remove(), 4000);
   }
+}
     </script>
 
     
