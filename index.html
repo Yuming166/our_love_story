@@ -397,18 +397,14 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
   setInterval(updateWeather, 30 * 60 * 1000); // 每30分钟更新一次
 </script>
 <script>
-const cornHatch = { year: 2025, month: 11, day: 2, hour: 17, minute: 8 };  // 月份 0 开始，12月=11
+const cornHatch = { year: 2025, month: 11, day: 2, hour: 17, minute: 8 };  // 月份0开始，12月=11
 const daisyHatch = { year: 2025, month: 11, day: 21, hour: 17, minute: 21 };
 
 function updateCountdown() {
   const now = new Date();
 
   function getTimeLeft(target) {
-    // 构造本地时间的目标日期
-    const targetDate = new Date(
-      target.year, target.month, target.day, target.hour, target.minute, 0
-    );
-
+    const targetDate = new Date(target.year, target.month, target.day, target.hour, target.minute, 0);
     const diff = targetDate - now;
     if (diff <= 0) return "Hatched! 🐣";
 
@@ -422,8 +418,9 @@ function updateCountdown() {
 
   document.getElementById("corn-countdown").textContent = getTimeLeft(cornHatch);
   document.getElementById("daisy-countdown").textContent = getTimeLeft(daisyHatch);
-}
-const nextYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+
+  // 新年倒计时
+  const nextYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
   const diffNewYear = nextYear - now;
   if (diffNewYear <= 0) {
     document.getElementById("newyear-countdown").textContent = "Happy New Year! 🎆";
@@ -437,6 +434,7 @@ const nextYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
   }
 }
 
+// 每秒刷新
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
