@@ -118,15 +118,13 @@
    /* 心心样式 */
     .heart {
   position: fixed;
-  top: -50px;
+  top: 0;
   width: 20px;
   height: 20px;
   background-color: #ff4d6d;
-  transform: rotate(315deg) scale(var(--scale,1)) translateX(0);
+  transform: rotate(315deg);
   z-index: 9999;
   pointer-events: none;
-  animation: fall var(--fall-time, 4s) linear forwards, sway var(--sway-time, 2s) ease-in-out infinite;
-  will-change: transform;
 }
 
 .heart::before,
@@ -147,20 +145,6 @@
 .heart::after {
   left: 10px;
   top: 0;
-}
-
-@keyframes fall {
-  0% { transform: translateY(0) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity:1; }
-  100% { transform: translateY(100vh) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity:0; }
-}
-
-/* 丝滑左右摆动 */
-@keyframes sway {
-  0% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
-  25% { transform: translateY(var(--y,0)) translateX(var(--sway-distance,10px)) rotate(45deg) scale(var(--scale,1)); }
-  50% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
-  75% { transform: translateY(var(--y,0)) translateX(calc(-1 * var(--sway-distance,10px))) rotate(45deg) scale(var(--scale,1)); }
-  100% { transform: translateY(var(--y,0)) translateX(0px) rotate(45deg) scale(var(--scale,1)); }
 }
   </style>
 </head>
@@ -303,12 +287,17 @@
   for (let i = 0; i < count; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
-    heart.style.left = `${Math.random()*90 + 5}%`;
+
+    // 随机水平位置
+    const startX = Math.random() * 90 + 5;
+    heart.style.left = startX + 'vw';
+
     const scale = Math.random()*0.6 + 0.6;
-    heart.style.setProperty('--scale', scale);
+    heart.style.transform = `rotate(45deg) scale(${scale})`;
 
     const swayDist = Math.random()*8 + 5; // 摆动幅度
     const fallTime = Math.random()*2 + 4; // 下落时间 4~6s
+
     let start = null;
 
     function animateHeart(timestamp) {
@@ -319,8 +308,10 @@
         heart.remove();
         return;
       }
+
       const y = progress * window.innerHeight;
-      const x = Math.sin(elapsed * 2*Math.PI / 1.5) * swayDist; // 1.5s 摆动周期
+      const x = Math.sin(elapsed * 2*Math.PI / 1.5) * swayDist; // 1.5秒一周期
+
       heart.style.transform = `translate(${x}px, ${y}px) rotate(45deg) scale(${scale})`;
       requestAnimationFrame(animateHeart);
     }
