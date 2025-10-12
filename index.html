@@ -115,49 +115,42 @@
       line-height: 1.4;
     }
 
-   .heart {
-  position: fixed;
-  top: -50px;
-  width: 20px;
-  height: 20px;
-  background-color: #ff4d6d;
-  transform: rotate(45deg) scale(var(--scale, 1));
-  z-index: 9999;
-  pointer-events: none;
-  animation: fall 4s linear forwards, sway 1s ease-in-out infinite alternate;
-}
+   /* 心心样式 */
+    .heart {
+      position: fixed;
+      top: -50px;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      transform: rotate(45deg) scale(var(--scale, 1)) translateX(var(--x,0px));
+      z-index: 9999;
+      pointer-events: none;
+      animation: fall var(--fall-time, 4s) linear forwards, sway 1s ease-in-out infinite alternate;
+    }
 
-.heart::before,
-.heart::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff4d6d;
-  border-radius: 50%;
-}
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      border-radius: 50%;
+    }
 
-.heart::before {
-  top: -10px;
-  left: 0;
-}
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
 
-.heart::after {
-  left: 10px;
-  top: 0;
-}
+    @keyframes fall {
+      0% { top: -50px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
 
-/* 竖直下落 */
-@keyframes fall {
-  0% { transform: translateY(0) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity: 1; }
-  100% { transform: translateY(100vh) translateX(0) rotate(45deg) scale(var(--scale,1)); opacity: 0; }
-}
-
-/* 左右微摇，不覆盖 rotate/scale */
-@keyframes sway {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(10px); }
-}
+    @keyframes sway {
+      0% { --x: 0px; }
+      50% { --x: var(--sway-distance, 10px); }
+      100% { --x: 0px; }
+    }
   </style>
 </head>
 <body>
@@ -296,27 +289,28 @@
         createHearts(30); // 每次点击生成5个心心
       }
       function createHearts(count) {
-  for (let i = 0; i < count; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
 
-    // 随机水平位置
-    heart.style.left = `${Math.random() * 90 + 5}%`;
+        // 随机水平位置
+        heart.style.left = `${Math.random() * 90 + 5}%`;
 
-    // 随机大小
-    const scale = Math.random() * 0.6 + 0.6; // 0.6~1.2倍
-    heart.style.setProperty('--scale', scale);
+        // 随机大小
+        const scale = Math.random() * 0.6 + 0.6;
+        heart.style.setProperty('--scale', scale);
 
-    // 随机摇摆幅度
-    const swayDistance = Math.random() * 10 + 5; // 5~15px
-    heart.style.animation = `fall ${4 + Math.random()*2}s linear forwards, sway 1s ease-in-out infinite alternate`;
-    heart.style.setProperty('--sway-distance', `${swayDistance}px`);
+        // 随机左右摇摆幅度
+        heart.style.setProperty('--sway-distance', `${Math.random() * 10 + 5}px`);
 
-    document.body.appendChild(heart);
+        // 随机下落时间
+        heart.style.setProperty('--fall-time', `${4 + Math.random() * 2}s`);
 
-    setTimeout(() => heart.remove(), 6000);
-  }
-}
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
     </script>
 
     
