@@ -208,13 +208,21 @@
       </div>
     </div>
     </div>
+
     <div class="box">
-  <h2>🎵 Music Player 🎵</h2>
-  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0"
-          width="100%" height="120"
-          src="https://music.163.com/outchain/player?type=0&id=14410253434&auto=0&height=66">
-  </iframe>
+  <h2>🐣 Egg Hatching Countdown 🐣</h2>
+  <div class="tab-grid">
+    <div class="tab">
+      <strong>玉米宝宝 🥰</strong><br>
+      <span id="corn-countdown">Loading...</span>
+    </div>
+    <div class="tab">
+      <strong>Daisy宝宝 😻</strong><br>
+      <span id="daisy-countdown">Loading...</span>
+    </div>
+  </div>
 </div>
+
   </div>
     <script>
       const surprises = [
@@ -303,7 +311,31 @@
   updateWeather();
   setInterval(updateWeather, 30 * 60 * 1000); // 每30分钟更新一次
 </script>
+<script>
+  // 破壳日期
+  const cornHatch = new Date("2025-12-02T17:08:00");
+  const daisyHatch = new Date("2025-12-21T17:21:00");
 
+  function updateCountdown() {
+    const now = new Date();
+
+    function getTimeLeft(target) {
+      const diff = target - now;
+      if(diff <= 0) return "Hatched! 🐣";
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    document.getElementById("corn-countdown").textContent = getTimeLeft(cornHatch);
+    document.getElementById("daisy-countdown").textContent = getTimeLeft(daisyHatch);
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
     
   <footer>
     © 2025 Bob G.& Daisy W. All rights reserved.
