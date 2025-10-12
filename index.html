@@ -306,12 +306,27 @@
     heart.style.left = `${Math.random()*90 + 5}%`;
     const scale = Math.random()*0.6 + 0.6;
     heart.style.setProperty('--scale', scale);
-    const swayDist = Math.random()*8 + 5; // 5~13px
-    const swayTime = Math.random()*1 + 1.5; // 1.5~2.5秒
-    heart.style.setProperty('--sway-distance', `${swayDist}px`);
-    heart.style.setProperty('--sway-time', `${swayTime}s`);
+
+    const swayDist = Math.random()*8 + 5; // 摆动幅度
+    const fallTime = Math.random()*2 + 4; // 下落时间 4~6s
+    let start = null;
+
+    function animateHeart(timestamp) {
+      if(!start) start = timestamp;
+      const elapsed = (timestamp - start)/1000;
+      const progress = elapsed / fallTime;
+      if(progress >= 1){
+        heart.remove();
+        return;
+      }
+      const y = progress * window.innerHeight;
+      const x = Math.sin(elapsed * 2*Math.PI / 1.5) * swayDist; // 1.5s 摆动周期
+      heart.style.transform = `translate(${x}px, ${y}px) rotate(45deg) scale(${scale})`;
+      requestAnimationFrame(animateHeart);
+    }
+
+    requestAnimationFrame(animateHeart);
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
   }
 }
     </script>
