@@ -386,7 +386,7 @@ setInterval(updateDays, 60*1000); // 每分钟更新一次
 
   function getWeatherIcon(code) {
     if (code === 0) return "Sunny☀️";
-    if (code <= 3) return "Partly Sunny🌤️";
+    if (code <= 3) return "Clody☁️";
     if (code <= 45) return "Mostly Clody🌫️";
     if (code <= 61) return "Rainy🌧️";
     if (code <= 71) return "Snowy❄️";
